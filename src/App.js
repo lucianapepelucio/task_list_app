@@ -1,8 +1,9 @@
 import React from 'react';
+import Paperbase from './template/Paperbase';
 
 const Tasklist = () => {
   return(
-    <h1> Hello Crazy World!!! :)</h1>
+    <Paperbase/>
   )
 }
 
