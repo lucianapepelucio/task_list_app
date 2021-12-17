@@ -6,12 +6,30 @@ import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-import Tooltip from '@mui/material/Tooltip';
-import IconButton from '@mui/material/IconButton';
-import SearchIcon from '@mui/icons-material/Search';
-import RefreshIcon from '@mui/icons-material/Refresh';
+import { useState, useCallback, useEffect } from 'react';
 
-export default function Content() {
+export default function NewTask() {
+  const [task, setTask] = useState('');
+  const [list, setList] = useState([]);
+
+  const handleInputChange = useCallback((e)=> {
+    setTask(e.target.value);
+  },[]);
+
+  const handleSave = useCallback((e)=> {
+    setList([
+      ...list, 
+      task
+    ]);
+
+    setTask('');
+
+  },[list,task]);
+
+  useEffect(() => {
+    console.log(list);
+  }, [list]);
+
   return (
     <Paper sx={{ maxWidth: 936, margin: 'auto', overflow: 'hidden' }}>
       <AppBar
@@ -22,13 +40,14 @@ export default function Content() {
       >
         <Toolbar>
           <Grid container spacing={2} alignItems="center">
-            <Grid item>
-              <SearchIcon color="inherit" sx={{ display: 'block' }} />
-            </Grid>
             <Grid item xs>
               <TextField
+                multiline
+                value={task}
+                onChange={handleInputChange}
                 fullWidth
-                placeholder="Search by email address, phone number, or user UID"
+                maxRows={4}
+                placeholder="Escreva aqui a sua tarefa"
                 InputProps={{
                   disableUnderline: true,
                   sx: { fontSize: 'default' },
@@ -37,20 +56,18 @@ export default function Content() {
               />
             </Grid>
             <Grid item>
-              <Button variant="contained" sx={{ mr: 1 }}>
-                Add user
+              <Button 
+              variant="contained" sx={{ mr: 1 }}
+              onClick = {handleSave}
+              >
+                Adicionar tarefa
               </Button>
-              <Tooltip title="Reload">
-                <IconButton>
-                  <RefreshIcon color="inherit" sx={{ display: 'block' }} />
-                </IconButton>
-              </Tooltip>
             </Grid>
           </Grid>
         </Toolbar>
       </AppBar>
       <Typography sx={{ my: 5, mx: 2 }} color="text.secondary" align="center">
-        No users for this project yet
+        Nenhuma tarefa adicionada até o momento
       </Typography>
     </Paper>
   );

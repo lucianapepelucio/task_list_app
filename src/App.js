@@ -1,9 +1,12 @@
 import React from 'react';
 import Paperbase from './template/Paperbase';
+import NewTask from './pages/NewTask';
 
 const Tasklist = () => {
   return(
-    <Paperbase/>
+    <Paperbase>
+      <NewTask />
+    </Paperbase>
   )
 }
 
