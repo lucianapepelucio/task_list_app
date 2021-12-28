@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { AppBar, Toolbar, Typography, Paper, Grid, Button, TextField} from '@mui/material';
+import { AppBar, Toolbar, Typography, Paper, Grid, Button, TextField, MenuList, MenuItem, ListItemIcon, ListItemText, Checkbox, IconButton} from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
 import { useState, useCallback, useEffect } from 'react';
 
 export default function NewTask() {
@@ -21,8 +22,8 @@ export default function NewTask() {
   },[task]);
 
   useEffect(() => {
-    console.log(task); //imprimir a lista de tarefas
-  }, [task]);
+    console.log(list);
+  }, [list]);
 
   return (
     <Paper sx={{ maxWidth: 936, margin: 'auto', overflow: 'hidden' }}>
@@ -60,9 +61,32 @@ export default function NewTask() {
           </Grid>
         </Toolbar>
       </AppBar>
-      <Typography sx={{ my: 5, mx: 2 }} color="text.secondary" align="center">
-        Nenhuma tarefa adicionada até o momento
-      </Typography>
+      {list.length === 0 && (
+        <Typography sx={{ my: 5, mx: 2 }} color="text.secondary" align="center">
+          Nenhuma tarefa adicionada até o momento
+        </Typography>
+      )}
+
+      {list.length > 0 && (
+        <Paper sx={{ width: "100%", padding: "20px", maxWidth: "100%"}} >
+          <MenuList>
+
+            {list.map(item => (
+              <MenuItem>
+                <ListItemIcon>
+                  <Checkbox defaultChecked />
+                </ListItemIcon>
+                <ListItemText>{item}</ListItemText>
+                <IconButton aria-label="delete" color="primary" component="span">
+                  <DeleteIcon />
+                </IconButton>
+              </MenuItem>
+            ))}
+
+          </MenuList>
+        </Paper>
+      )}
+
     </Paper>
   );
 }

@@ -2,7 +2,7 @@
 
 Funcionalidades do app:  
 - [x] Cadastrar uma nova tarefa a ser feita 
-- [] Listar tarefas 
+- [x] Listar tarefas 
 - [] Remover tarefa  
 - [] Marcar tarefa como feita
 
