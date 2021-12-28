@@ -1,11 +1,5 @@
 import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Paper from '@mui/material/Paper';
-import Grid from '@mui/material/Grid';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
+import { AppBar, Toolbar, Typography, Paper, Grid, Button, TextField} from '@mui/material';
 import { useState, useCallback, useEffect } from 'react';
 
 export default function NewTask() {
@@ -17,18 +11,18 @@ export default function NewTask() {
   },[]);
 
   const handleSave = useCallback((e)=> {
-    setList([
-      ...list, 
+    setList((previousValue) =>[
+      ...previousValue, 
       task
     ]);
 
     setTask('');
 
-  },[list,task]);
+  },[task]);
 
   useEffect(() => {
-    console.log(list);
-  }, [list]);
+    console.log(task); //imprimir a lista de tarefas
+  }, [task]);
 
   return (
     <Paper sx={{ maxWidth: 936, margin: 'auto', overflow: 'hidden' }}>

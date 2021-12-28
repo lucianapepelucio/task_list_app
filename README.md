@@ -1,7 +1,7 @@
 # Task List APP  
 
 Funcionalidades do app:  
-- [] Cadastrar uma nova tarefa a ser feita 
+- [x] Cadastrar uma nova tarefa a ser feita 
 - [] Listar tarefas 
 - [] Remover tarefa  
 - [] Marcar tarefa como feita
