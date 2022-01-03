@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { AppBar, Toolbar, Typography, Paper, Grid, Button, TextField, MenuList, MenuItem, ListItemIcon, ListItemText, Checkbox, IconButton} from '@mui/material';
-import DeleteIcon from '@mui/icons-material/Delete';
+import TaskItem, { handleTaskDeletion } from '../components/TaskItem';
+import { AppBar, Toolbar, Typography, Paper, Grid, Button, TextField, MenuList } from '@mui/material';
 import { useState, useCallback, useEffect } from 'react';
 
 export default function NewTask() {
@@ -20,6 +20,10 @@ export default function NewTask() {
     setTask('');
 
   },[task]);
+
+  const handleTaskDeletion = useCallback((index) => {
+    setList(list.filter((_, listIndex) => listIndex !== index))
+  }, [list]);
 
   useEffect(() => {
     console.log(list);
@@ -71,16 +75,8 @@ export default function NewTask() {
         <Paper sx={{ width: "100%", padding: "20px", maxWidth: "100%"}} >
           <MenuList>
 
-            {list.map(item => (
-              <MenuItem>
-                <ListItemIcon>
-                  <Checkbox defaultChecked />
-                </ListItemIcon>
-                <ListItemText>{item}</ListItemText>
-                <IconButton aria-label="delete" color="primary" component="span">
-                  <DeleteIcon />
-                </IconButton>
-              </MenuItem>
+            {list.map((task, index) => (
+              <TaskItem task={task} index={index} />
             ))}
 
           </MenuList>
