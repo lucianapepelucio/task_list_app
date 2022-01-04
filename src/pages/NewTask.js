@@ -1,5 +1,5 @@
 import * as React from 'react';
-import TaskItem, { handleTaskDeletion } from '../components/TaskItem';
+import TaskItem from '../components/TaskItem';
 import { AppBar, Toolbar, Typography, Paper, Grid, Button, TextField, MenuList } from '@mui/material';
 import { useState, useCallback, useEffect } from 'react';
 
@@ -26,8 +26,16 @@ export default function NewTask() {
   }, [list]);
 
   useEffect(() => {
-    console.log(list);
+    localStorage.setItem('newList', JSON.stringify(list))
   }, [list]);
+
+  useEffect(() => {
+    const myList = localStorage.getItem('newList');
+    if (myList){
+      setList(JSON.parse(myList));
+    }
+    console.log("myList", myList);
+  }, []);
 
   return (
     <Paper sx={{ maxWidth: 936, margin: 'auto', overflow: 'hidden' }}>
@@ -76,7 +84,7 @@ export default function NewTask() {
           <MenuList>
 
             {list.map((task, index) => (
-              <TaskItem task={task} index={index} />
+              <TaskItem task={task} onClick={() => handleTaskDeletion(index)} />
             ))}
 
           </MenuList>
