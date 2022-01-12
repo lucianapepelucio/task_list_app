@@ -1,11 +1,11 @@
-# Task List APP  
+# Task List APP
 
-Funcionalidades do app:  
-- [x] Cadastrar uma nova tarefa a ser feita 
-- [x] Listar tarefas 
-- [] Remover tarefa  
+Funcionalidades do app:
+
+- [x] Cadastrar uma nova tarefa a ser feita
+- [x] Listar tarefas
+- [x] Remover tarefa
 - [] Marcar tarefa como feita
-
 
 # Getting Started with Create React App
 
